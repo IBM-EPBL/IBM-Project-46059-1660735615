@@ -1,0 +1,105 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<table id="example" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>Sno</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phno</th>
+                <th>Blood_group</th>
+                <th>Weight</th>
+                <th>Gender</th>
+                <th>DOB</th>
+                <th>Address</th>
+                <th>Aadharno</th>
+                <th>Action</th>
+                <th></th>
+                <th></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for d in data %}
+            <!-- {{d}} -->
+            <tr>
+                <td>{{loop.index}}
+                <!-- <td>{{d[10]}}</td> -->
+                <td>{{d[0]}}</td>
+                <td>{{d[1]}}</td>
+                <td>{{d[2]}}</td>
+                <td>{{d[3]}}</td>
+                <td>{{d[4]}}</td>
+                <td>{{d[5]}}</td>
+                <td>{{d[6]}}</td>
+                <td>{{d[7]}}</td>
+                <td>{{d[8]}}</td>
+
+                <td>
+                  <form action="{{url_for('edit')}}" method="POST">
+                  <button value={{d[10]}} name="edit">Edit</button>
+                  </form>
+                </td>
+
+                <td>
+                  <form action="{{url_for('activate')}}" method="POST">
+                  <button value={{d[10]}} name="hold">Activate</button>
+                  </form>
+                </td>
+                
+
+                <td>
+                  <form action="{{url_for('delete')}}" method="POST">
+                  <button value={{d[10]}} name="delete">Delete</button>
+                  </form>
+                </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+</table>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#example').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    } );
+} );
+</script>
+
+<div class="container-fluid"> <!-- Header content -->
+    <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <div>
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="{{url_for('view')}}"><span class="glyphicon glyphicon-log-out"></span> Active</a></li>
+        
+  </ul>
+  </div>
+
+
+    <div>
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="{{url_for('logout')}}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+        
+  </ul>
+  </div>
+
+</div>
+</div>
+</nav>
+</div>
+
+{% endblock %}

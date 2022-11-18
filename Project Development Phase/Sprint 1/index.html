@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+
+	<div class="container-fluid"> <!-- Header content -->
+		<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    <div>
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="{{url_for('login')}}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li><a href="{{ url_for('register') }}">Register Here</a></li>
+         <li><a href="{{ url_for('view2') }}">View Donors</a></li>
+
+         
+	
+	</ul>
+    </div>
+
+</div>
+</div>
+</nav>
+</div>
+
+    <center>
+    <div>
+    <P style="color:rgb(238, 9, 9);font-size:40px"; >Active donors:{% for i in data %}{{ i[0] }} {% endfor %}</P>
+    </center>
+
+<center><img src="https://us.123rf.com/450wm/artbandung99/artbandung992103/artbandung99210300042/165731895-hand-droplet-with-blood-vector.jpg?ver=6" width="460" height="345"></center>
+
+{% endblock %}

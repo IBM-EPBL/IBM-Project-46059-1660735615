@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+
+  <script type="text/javascript">
+    var m={{ messages|safe }};
+    for(var i=0;i<m.length;i++)
+    {
+      alert(m[i]);
+    }
+  </script>
+
+  {% endif %}
+{% endwith %}
+
+	
+	<div class="container-fluid"> <!-- Header content -->
+		<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    <div>
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="{{ url_for('view') }}">Active Donors</a></li>
+         <li><a href="{{ url_for('inactive') }}">Inactive Donors</a></li>
+         <li><a href="{{url_for('logout')}}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+    </ul>
+    </div>
+
+
+
+</div>
+    </nav>
+</div>
+
+<center><img src="https://us.123rf.com/450wm/artbandung99/artbandung992103/artbandung99210300042/165731895-hand-droplet-with-blood-vector.jpg?ver=6" width="460" height="345"></center>
+
+
+{% endblock %}

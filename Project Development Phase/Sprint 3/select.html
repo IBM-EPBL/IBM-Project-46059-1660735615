@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+
+{% block content %}
+
+
+{% with messages = get_flashed_messages() %}
+	{% if messages %}
+
+	<script type="text/javascript">
+		var m={{ messages|safe }};
+		for(var i=0;i<m.length;i++)
+		{
+			alert(m[i]);
+		}
+	</script>
+
+	{% endif %}
+{% endwith %}
+
+<form class="form-horizontal" action="{{url_for('viewselected')}}" method="POST">
+	<select id="blood_group" name="blood_group">
+		<option value="">select</option>
+			{% for i in data %}
+			<option value="{{i[0]}}">{{ i[0] }}</option>
+			{% endfor %}
+	</select>
+
+
+
+	<input type="submit" name="submit">
+	<p></p>
+</form>
+<script type="text/javascript">
+	$('#blood_group').change(function()){
+		$.ajax({
+			data:{
+				blood_group:$('#blood_group').val()
+			},
+			type:'POST'
+			url:'/viewselected'
+		})
+		.done(function(data){
+			alert(data.blood_group)
+		});
+
+</script>
+
+    <td>
+        <form action="{{url_for('viewall')}}" method="POST">
+        <button value="" name="viewall">View all</button>
+        </form>
+    </td>
+
+<center><img src="http://www.gkh.co.in/files/abstract-images/blood_bank_581151803.jpg" width="400" height="400"></center>
+
+{% endblock %}
